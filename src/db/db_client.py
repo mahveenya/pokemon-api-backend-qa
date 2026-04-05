@@ -6,8 +6,11 @@ DB_URL = "postgresql://admin:admin@localhost:5432/pokemon_db"
 
 
 class DBClient:
+    def __init__(self):
+        self.conn = psycopg.connect(DB_URL)
+
     def _execute(self, query, params=None, fetch="one"):
-        with psycopg.connect(DB_URL) as conn, conn.cursor() as cursor:
+        with self.conn.cursor() as cursor:
             cursor.execute(query, params)
             if fetch == "one":
                 return cursor.fetchone()
@@ -35,11 +38,10 @@ class DBClient:
             query, list(kwargs.values()) if kwargs else None, fetch="all"
         )
 
+    def close(self):
+        self.conn.close()
+
 
 class DB:
-    def __init__(self):
-        client = DBClient()
+    def __init__(self, client: DBClient):
         self.pokemon = PokemonTable(client)
-
-
-db = DB()
