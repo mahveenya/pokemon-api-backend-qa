@@ -8,7 +8,7 @@ from psycopg.rows import dict_row
 DB_URL = "postgresql://admin:admin@localhost:5432/pokemon_db"
 
 
-class DBClient:
+class DatabaseClient:
     def __init__(self):
         self.conn = psycopg.connect(DB_URL)
 
@@ -64,6 +64,6 @@ class DBClient:
         self.conn.close()
 
 
-class DB:
-    def __init__(self, client: DBClient):
+class Database:
+    def __init__(self, client: DatabaseClient):
         self.pokemon = PokemonTable(client)

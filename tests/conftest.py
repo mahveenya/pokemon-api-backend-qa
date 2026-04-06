@@ -1,5 +1,5 @@
 from api.api_client import Client, CoreClient
-from db.db_client import DB, DBClient
+from db.db_client import Database, DatabaseClient
 import pytest
 
 
@@ -13,7 +13,7 @@ def client():
 
 @pytest.fixture(scope="session")
 def db():
-    client = DBClient()
-    db = DB(client)
+    client = DatabaseClient()
+    db = Database(client)
     yield db
     client.close()
