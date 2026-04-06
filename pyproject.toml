@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Project for testing backend of my copy of the pokemon api"
 readme = "README.md"
 requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.12.5",
+]
 
 
 [dependency-groups]
