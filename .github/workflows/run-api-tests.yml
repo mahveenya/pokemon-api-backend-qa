@@ -1,0 +1,36 @@
+name: Run API tests
+
+on:
+  repository_dispatch:
+    types: [run-api-tests]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: ${{ github.event.client_payload.branch || 'main' }}
+
+    steps:
+      - name: Checkout tests repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install test dependencies
+        run: uv sync
+
+      - name: Start QA environment
+        run: docker compose -f docker-compose.yml up -d --wait
+
+      - name: Run pytest
+        run: uv run pytest -v
+
+      - name: Stop QA environment
+        if: always()
+        run: docker compose -f docker-compose.yml down -v

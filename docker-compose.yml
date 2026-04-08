@@ -1,4 +1,4 @@
-name: pokemon-api
+name: qa-pokemon-api
 services:
   db:
     image: postgres:18
@@ -34,6 +34,11 @@ services:
     depends_on:
       db-seed:
         condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     environment:
       DATABASE_URL: postgresql+asyncpg://admin:admin@db:5432/pokemon_db
     ports:
