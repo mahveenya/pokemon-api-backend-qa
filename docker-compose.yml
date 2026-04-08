@@ -43,6 +43,7 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
+      start_period: 30s
     environment:
       DATABASE_URL: postgresql+asyncpg://admin:admin@db:5432/pokemon_db
     ports:
