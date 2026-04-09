@@ -1,12 +1,15 @@
-DOCKER_COMPOSE_FILE=./docker-compose.yml
+COMPOSE_FILE = docker-compose.yml
 IMAGE_TAG ?= main
+ENV ?= local
+
+COMPOSE_FILE = docker-compose.yml
+ifeq ($(ENV), ci)
+    COMPOSE_FILE += -f docker-compose.ci.yml
+endif
 
 up:
-	IMAGE_TAG=$(IMAGE_TAG) docker compose -f $(DOCKER_COMPOSE_FILE) up -d --build
+	docker compose -f $(COMPOSE_FILE) up -d
+	docker compose -f $(COMPOSE_FILE) wait db-seed
 down:
-	docker compose -f $(DOCKER_COMPOSE_FILE) down
-stop:
-	docker compose -f $(DOCKER_COMPOSE_FILE) stop
-start:
-	docker compose -f $(DOCKER_COMPOSE_FILE) start
+	docker compose -f $(COMPOSE_FILE) down -v
 rebuild: down up
