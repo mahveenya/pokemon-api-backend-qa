@@ -21,8 +21,8 @@ def _verify_pokemons_are_ordered_by_id(
     results, expected_pokemons_ordered_by_id: list[PokemonModel]
 ):
     for index, expected_pokemon in enumerate(expected_pokemons_ordered_by_id):
-        actual_pokemon_id = results[index]["id"]
-        assert_that(actual_pokemon_id, equal_to(expected_pokemon.id))
+        actual_pokemon_name = results[index]["name"]
+        assert_that(actual_pokemon_name, equal_to(expected_pokemon.name))
 
 
 def _verify_results(response, expected_pokemons_ordered_by_id: list[PokemonModel]):
