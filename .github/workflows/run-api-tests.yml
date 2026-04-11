@@ -14,7 +14,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      IMAGE_TAG: ${{ github.event.client_payload.branch || 'main' }}
+      IMAGE_TAG: ${{ github.event.client_payload.branch || github.event.inputs.branch || 'main' }}
       ENV: ci
 
     steps:
@@ -35,13 +35,27 @@ jobs:
       - name: Start QA environment
         run: make up
 
+      - name: Install Allure
+        run: npm install -g allure-commandline
+
       - name: Show container logs
         if: failure()
-        run: docker compose -f docker-compose.yml logs
+        run: make logs
 
       - name: Run pytest
         run: uv run pytest -v
 
+      - name: Generate Allure report
+        if: always()
+        run: make allure-report
+
+      - name: Deploy report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
+
       - name: Stop QA environment
         if: always()
-        run: make down -v
+        run: make down

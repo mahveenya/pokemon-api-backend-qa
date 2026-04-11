@@ -12,4 +12,8 @@ up:
 	docker compose -f $(COMPOSE_FILE) wait db-seed
 down:
 	docker compose -f $(COMPOSE_FILE) down -v
+logs:
+	docker compose -f $(COMPOSE_FILE) logs
+allure-report:
+	allure generate allure-results -o allure-report --clean
 rebuild: down up
