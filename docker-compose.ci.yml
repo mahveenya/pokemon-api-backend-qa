@@ -1,4 +1,0 @@
-services:
-  backend:
-    healthcheck:
-      interval: 5s

@@ -1,0 +1,1 @@
+[{"uid":"c818a14b43546160","name":"test_default_pokemon_list_response","time":{"start":1775942095347,"stop":1775942095359,"duration":12},"status":"passed","severity":"normal"},{"uid":"710abe8329e1d6c1","name":"test_pokemon_is_returned_by_id","time":{"start":1775942095297,"stop":1775942095344,"duration":47},"status":"passed","severity":"normal"}]
