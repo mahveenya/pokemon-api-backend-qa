@@ -1,6 +1,7 @@
 from http import HTTPStatus
 import os
 
+from assertions.utils.allure import step
 from hamcrest import assert_that, equal_to
 import requests
 
@@ -16,6 +17,7 @@ class CoreClient:
     def close(self):
         self.session.close()
 
+    @step
     def get(
         self, path, expected_status=HTTPStatus.OK, jsonify=True, **kwargs
     ) -> dict | requests.Response:
