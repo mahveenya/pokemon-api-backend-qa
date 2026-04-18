@@ -1,5 +1,5 @@
 COMPOSE_FILE = docker-compose.yml
-IMAGE_TAG ?= main
+IMAGE_TAG ?= latest
 ENV ?= local
 
 COMPOSE_FILE = docker-compose.yml

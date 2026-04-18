@@ -8,7 +8,7 @@ on:
       branch:
         description: "Backend image tag"
         required: false
-        default: "main"
+        default: "latest"
 
 permissions:
   contents: write
@@ -17,7 +17,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      IMAGE_TAG: ${{ github.event.client_payload.branch || github.event.inputs.branch || 'main' }}
+      IMAGE_TAG: ${{ github.event.client_payload.branch || github.event.inputs.branch || 'latest' }}
       ENV: ci
 
     steps:
