@@ -1,13 +1,14 @@
-from api.api_client import Client, CoreClient
+from api.backend_client import BackendClient
+from api.core_client import CoreClient
 from db.db_client import Database, DatabaseClient
 import pytest
 
 
 @pytest.fixture(scope="session")
-def client():
+def backend_client():
     core_client = CoreClient()
-    client = Client(core_client)
-    yield client
+    backend_client = BackendClient(core_client)
+    yield backend_client
     core_client.close()
 
 

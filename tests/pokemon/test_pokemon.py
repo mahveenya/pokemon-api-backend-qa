@@ -4,7 +4,7 @@ from tests.base_test import BaseTest
 
 class TestPokemons(BaseTest):
     def test_pokemon_is_returned_by_id(self):
-        response = self.client.pokemon.get(1)
+        response = self.backend_client.pokemon.get(1)
         expected_pokemon = self.db.pokemon.get_one(id=1)
         expected_pokemon_abilities = self.db.pokemon.get_all_pokemon_abilities(
             pokemon_id=1

@@ -1,8 +1,6 @@
 from http import HTTPStatus
 import os
 
-from api.pokemon import PokemonEndpoint
-from api.pokemon_list import PokemonListEndpoint
 from hamcrest import assert_that, equal_to
 import requests
 
@@ -25,9 +23,3 @@ class CoreClient:
         assert_that(res.status_code, equal_to(expected_status))
         respose = res.json() if jsonify else res
         return respose
-
-
-class Client:
-    def __init__(self, client: CoreClient):
-        self.pokemon_list = PokemonListEndpoint(client)
-        self.pokemon = PokemonEndpoint(client)

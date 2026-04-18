@@ -7,7 +7,7 @@ from tests.base_test import BaseTest
 
 class TestPokemonList(BaseTest):
     def test_default_pokemon_list_response(self):
-        response = self.client.pokemon_list.get()
+        response = self.backend_client.pokemon_list.get()
         expected_count = self.db.pokemon.count_all_entries()
         expected_pokemons_ordered_by_id = self.db.pokemon.get_all(
             limit=DefaultValues.DEFAULT_POKEMON_LIMIT_PER_PAGE, order_by="id"

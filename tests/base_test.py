@@ -1,13 +1,10 @@
-from api.api_client import Client
+from api.backend_client import BackendClient
 from db.db_client import Database
 import pytest
 
 
 class BaseTest:
-    db: Database
-    client: Client
-
     @pytest.fixture(autouse=True)
-    def setup(self, client, db):
+    def setup(self, backend_client: BackendClient, db: Database):
         self.db = db
-        self.client = client
+        self.backend_client = backend_client
