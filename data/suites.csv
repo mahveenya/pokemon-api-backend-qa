@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","11","test_default_pokemon_list_response","tests.pokemon","2026-04-20","failed","2026-04-20","TestPokemonList","test_pokemon_list","",""
-"","51","test_pokemon_is_returned_by_id","tests.pokemon","2026-04-20","failed","2026-04-20","TestPokemons","test_pokemon","",""
+"","54","test_pokemon_is_returned_by_id","tests.pokemon","2026-04-20","failed","2026-04-20","TestPokemons","test_pokemon","",""
+"","10","test_default_pokemon_list_response","tests.pokemon","2026-04-20","failed","2026-04-20","TestPokemonList","test_pokemon_list","",""
